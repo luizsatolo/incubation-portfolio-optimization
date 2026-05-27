@@ -1,0 +1,68 @@
+{
+  "description": "Anonymized cohort of graduated ventures from a Brazilian university incubator. Each row is one venture at graduation.",
+  "n_ventures": 19,
+  "source": "Original survey conducted with incubator graduates (identifiers removed).",
+  "variables": {
+    "ip": {
+      "role": "outcome",
+      "type": "binary",
+      "description": "Intellectual property registered (patent or software) during incubation OR after graduation (1=yes, 0=no)."
+    },
+    "hub": {
+      "role": "outcome",
+      "type": "binary",
+      "description": "Post-graduation affiliation with a hub, science/technology park, or innovation space (1=yes, 0=no). Reference category: own premises or rented office."
+    },
+    "rev_high": {
+      "role": "outcome",
+      "type": "binary",
+      "description": "High-revenue indicator: 1 if self-reported annual turnover bracket ≥ R$5M–R$10M, 0 otherwise."
+    },
+    "team_growth": {
+      "role": "outcome",
+      "type": "binary",
+      "description": "Team size grew after graduation: 1 if current headcount bracket > entry headcount bracket (ordinal 0–3 scale), 0 otherwise."
+    },
+    "stage_growth": {
+      "role": "outcome",
+      "type": "binary",
+      "description": "Technology stage advanced: 1 if maturity level at exit > maturity level at entry (scale 1=Ideation, 2=MVP, 3=Business, 4=Scale-up), 0 otherwise."
+    },
+    "tech_digital": {
+      "role": "predictor",
+      "type": "binary",
+      "description": "Technology domain indicator. 1=digital/platform/Industry-4.0 (drones, platforms, remote sensing, food-4.0); 0=bio/agri (biocontrol, fertilizers, food innovation, lab analysis, sustainability)."
+    },
+    "founders": {
+      "role": "predictor",
+      "type": "integer",
+      "description": "Number of founding partners at company inception."
+    },
+    "incub_years": {
+      "role": "predictor",
+      "type": "numeric",
+      "description": "Incubation duration in years (year of graduation minus year of entry)."
+    },
+    "stage_in": {
+      "role": "predictor",
+      "type": "ordinal_1_4",
+      "levels": {
+        "1": "Ideation/prototype",
+        "2": "MVP validation",
+        "3": "Business",
+        "4": "Scale-up"
+      },
+      "description": "Technology maturity stage at incubation entry (1=lowest, 4=highest)."
+    },
+    "team_size_in": {
+      "role": "predictor",
+      "type": "binary",
+      "description": "Entry team size bracket. 0 = fewer than 5 employees; 1 = 5–10 employees."
+    },
+    "stage_adv": {
+      "role": "predictor",
+      "type": "binary",
+      "description": "Advanced stage at entry indicator: 1 if stage_in > 2 (Business or Scale-up), 0 otherwise. Derived from stage_in."
+    }
+  }
+}
