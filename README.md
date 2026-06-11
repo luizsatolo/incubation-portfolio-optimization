@@ -166,13 +166,7 @@ This pipeline is designed to be context-portable. To apply it to a different inc
 
 ## Citation
 
-If you use this pipeline in research or policy work, please cite:
-
-```
-[Author(s) omitted for review]. Designing Incubation Portfolios Aligned with Public Policy
-Objectives: Predictive Modeling and Multiobjective Optimization from a Brazilian University
-Incubator. Technovation (under review).
-```
+This repository accompanies a manuscript currently in press. Full citation details will be added once the paper is published.
 
 ---
 
