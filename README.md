@@ -34,8 +34,6 @@ The result is a **replicable, policy-oriented framework** that any incubator or 
 │   └── venture_cohort_dictionary.json # Variable definitions and coding rules
 ├── incubation_portfolio_pipeline_elasticnet.ipynb  # Main analysis notebook (ElasticNet pipeline)
 ├── outputs_elasticnet/               # Generated tables/figures from the ElasticNet notebook (gitignored)
-├── legacy/
-│   └── incubation_portfolio_pipeline.ipynb  # Superseded Ridge-based pipeline, kept for reference
 ├── requirements.txt                 # Python dependencies
 ├── README.md
 └── .gitignore
@@ -91,8 +89,6 @@ See `data/venture_cohort_dictionary.json` for full variable definitions and codi
 
 Open `incubation_portfolio_pipeline_elasticnet.ipynb` in Jupyter and run sections top-to-bottom. The notebook is organized as follows:
 
-> The previous Ridge-based pipeline (`legacy/incubation_portfolio_pipeline.ipynb`) is kept for reference but is superseded by the ElasticNet notebook, which is the version reported in the manuscript.
-
 | Section | Content |
 |---|---|
 | 0 | Imports and configuration |
@@ -147,4 +143,39 @@ See Section 0/1 of `incubation_portfolio_pipeline_elasticnet.ipynb` for the full
 
 The five outcome variables map directly to performance dimensions tracked by Brazil's **CERNE** (Reference Centre for Supporting New Enterprises) accreditation framework — the national quality standard for incubators administered by Anprotec/SEBRAE. They capture:
 
-- **Technology transfer** (`ip`): alignment with innovation mandates und
+- **Technology transfer** (`ip`): alignment with innovation mandates under Brazil's Lei de Inovação
+- **Ecosystem integration** (`hub`): linkage to public S&T infrastructure
+- **Economic performance** (`rev_high`): revenue and commercialization thresholds
+- **Employment generation** (`team_growth`): sustainable headcount growth
+- **Technological advancement** (`stage_growth`): progress along the technology readiness ladder
+
+The ε-constraint Pareto sweep allows policy evaluators to visualize trade-offs between these dimensions and identify portfolio configurations that satisfy multiple government-mandated targets simultaneously.
+
+---
+
+## Adapting to Other Contexts
+
+This pipeline is designed to be context-portable. To apply it to a different incubator or national system:
+
+1. Replace `venture_cohort.csv` with your cohort data, using the same column schema
+2. Update `OUTCOME_SPECS` to match your variable names and predictor sets
+3. Adjust `CAPACITY` to reflect your intake cohort size
+4. Relabel the five objectives in Section 6 to match your policy framework's KPIs
+
+---
+
+## Citation
+
+If you use this pipeline in research or policy work, please cite:
+
+```
+[Author(s) omitted for review]. Designing Incubation Portfolios Aligned with Public Policy
+Objectives: Predictive Modeling and Multiobjective Optimization from a Brazilian University
+Incubator. Technovation (under review).
+```
+
+---
+
+## License
+
+MIT License. See `LICENSE` for details.
