@@ -14,7 +14,7 @@ University incubators face a dual mandate: cultivating high-potential ventures a
 
 It combines:
 
-- **Ridge-penalized logistic regression** with leave-one-out cross-validation (LOOCV) to predict five post-graduation outcomes from ex-ante venture attributes
+- **ElasticNet-penalized logistic regression** (saga solver, with l1_ratio tuned per outcome via nested cross-validation) with leave-one-out cross-validation (LOOCV) to predict five post-graduation outcomes from ex-ante venture attributes
 - **Permutation testing** (Phipson–Smyth formula) to assess statistical significance of LOOCV metrics
 - **Calibration assessment** (reliability curves, Brier decomposition, isotonic post-calibration) to evaluate probabilistic quality
 - **Average Marginal Effects (AMEs)** with pairs-bootstrap confidence intervals to quantify each attribute's causal-descriptive influence on outcomes
@@ -32,7 +32,10 @@ The result is a **replicable, policy-oriented framework** that any incubator or 
 ├── data/
 │   ├── venture_cohort.csv             # Anonymized graduate cohort data (required)
 │   └── venture_cohort_dictionary.json # Variable definitions and coding rules
-├── incubation_portfolio_pipeline.ipynb  # Main analysis notebook (9 sections, 35 cells)
+├── incubation_portfolio_pipeline_elasticnet.ipynb  # Main analysis notebook (ElasticNet pipeline)
+├── outputs_elasticnet/               # Generated tables/figures from the ElasticNet notebook (gitignored)
+├── legacy/
+│   └── incubation_portfolio_pipeline.ipynb  # Superseded Ridge-based pipeline, kept for reference
 ├── requirements.txt                 # Python dependencies
 ├── README.md
 └── .gitignore
@@ -86,7 +89,9 @@ See `data/venture_cohort_dictionary.json` for full variable definitions and codi
 
 ## Usage
 
-Open `incubation_portfolio_pipeline.ipynb` in Jupyter and run sections top-to-bottom. The notebook is organized as follows:
+Open `incubation_portfolio_pipeline_elasticnet.ipynb` in Jupyter and run sections top-to-bottom. The notebook is organized as follows:
+
+> The previous Ridge-based pipeline (`legacy/incubation_portfolio_pipeline.ipynb`) is kept for reference but is superseded by the ElasticNet notebook, which is the version reported in the manuscript.
 
 | Section | Content |
 |---|---|
@@ -114,17 +119,27 @@ EPS_VEC     = np.linspace(0.05, 0.95, 19)  # ε-floor sweep grid
 USE_EVIDENCE_WEIGHTS = False  # set True to apply permutation-p-weighted objectives
 ```
 
-Adapt `OUTCOME_SPECS` to your variable names and feature sets:
+Adapt `OUTCOME_SPECS` to your variable names and feature sets. Each entry now also configures the ElasticNet `l1_ratio` grid, optional interaction terms, and whether Ridge-based pre-screening is applied:
 
 ```python
 OUTCOME_SPECS = {
-    "ip":           {"bin_cols": ["tech_digital"],              "num_cols": ["founders"],    "cat_cols": []},
-    "hub":          {"bin_cols": [],                            "num_cols": ["incub_years"], "cat_cols": ["stage_in"]},
-    "rev_high":     {"bin_cols": ["team_size_in"],              "num_cols": ["incub_years"], "cat_cols": []},
-    "team_growth":  {"bin_cols": ["tech_digital", "stage_adv"], "num_cols": [],              "cat_cols": []},
-    "stage_growth": {"bin_cols": ["stage_adv", "team_size_in"], "num_cols": [],              "cat_cols": []},
+    "ip":           {"bin_cols": ["tech_digital", "team_size_in"], "num_cols": ["founders", "incub_years"],
+                      "cat_cols": ["stage_in"], "interact_num_cat": [...], "interact_num_bin": [...],
+                      "l1_ratio_grid": [0.5], "prescreening": True},
+    "hub":          {"bin_cols": [], "num_cols": ["incub_years"], "cat_cols": ["stage_in"],
+                      "interact_num_cat": [("incub_years", "stage_in")],
+                      "l1_ratio_grid": [0.1], "prescreening": False},
+    "rev_high":     {"bin_cols": ["team_size_in"], "num_cols": ["incub_years"], "cat_cols": [],
+                      "interact_num_bin": [("incub_years", "team_size_in")],
+                      "l1_ratio_grid": [0.1], "prescreening": False},
+    "team_growth":  {"bin_cols": ["tech_digital", "stage_adv"], "num_cols": [], "cat_cols": [],
+                      "l1_ratio_grid": [0.1], "prescreening": False},
+    "stage_growth": {"bin_cols": ["stage_adv", "team_size_in"], "num_cols": [], "cat_cols": [],
+                      "l1_ratio_grid": [0.1], "prescreening": False},
 }
 ```
+
+See Section 0/1 of `incubation_portfolio_pipeline_elasticnet.ipynb` for the full specs (including all interaction terms) and the rationale behind each curated feature set.
 
 ---
 
@@ -132,39 +147,4 @@ OUTCOME_SPECS = {
 
 The five outcome variables map directly to performance dimensions tracked by Brazil's **CERNE** (Reference Centre for Supporting New Enterprises) accreditation framework — the national quality standard for incubators administered by Anprotec/SEBRAE. They capture:
 
-- **Technology transfer** (`ip`): alignment with innovation mandates under Brazil's Lei de Inovação
-- **Ecosystem integration** (`hub`): linkage to public S&T infrastructure
-- **Economic performance** (`rev_high`): revenue and commercialization thresholds
-- **Employment generation** (`team_growth`): sustainable headcount growth
-- **Technological advancement** (`stage_growth`): progress along the technology readiness ladder
-
-The ε-constraint Pareto sweep allows policy evaluators to visualize trade-offs between these dimensions and identify portfolio configurations that satisfy multiple government-mandated targets simultaneously.
-
----
-
-## Adapting to Other Contexts
-
-This pipeline is designed to be context-portable. To apply it to a different incubator or national system:
-
-1. Replace `venture_cohort.csv` with your cohort data, using the same column schema
-2. Update `OUTCOME_SPECS` to match your variable names and predictor sets
-3. Adjust `CAPACITY` to reflect your intake cohort size
-4. Relabel the five objectives in Section 6 to match your policy framework's KPIs
-
----
-
-## Citation
-
-If you use this pipeline in research or policy work, please cite:
-
-```
-[Author(s) omitted for review]. Designing Incubation Portfolios Aligned with Public Policy
-Objectives: Predictive Modeling and Multiobjective Optimization from a Brazilian University
-Incubator. Technovation (under review).
-```
-
----
-
-## License
-
-MIT License. See `LICENSE` for details.
+- **Technology transfer** (`ip`): alignment with innovation mandates und
