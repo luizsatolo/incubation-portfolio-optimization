@@ -22,8 +22,8 @@ authors:
     affiliation: "Instituto Tecnológico de Aeronáutica"
 repository-code: "https://github.com/luizsatolo/incubation-portfolio-optimization"
 license: MIT
-# doi: ""          # add Zenodo DOI after first release
-# date-released: "" # add release date (YYYY-MM-DD)
+doi: "10.5281/zenodo.20720293"          # add Zenodo DOI after first release
+date-released: "16/06/2026" # add release date (YYYY-MM-DD)
 version: "1.0.0"
 keywords:
   - business incubation
