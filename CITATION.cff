@@ -1,0 +1,65 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the repository and the associated paper."
+type: software
+title: "Incubation Portfolio Optimization Pipeline"
+abstract: >
+  Replication code for a predictive modeling and multiobjective optimization
+  pipeline for evidence-based incubation portfolio selection under public
+  policy constraints. Implements ElasticNet-penalized logistic regression
+  with leave-one-out cross-validation, epsilon-constraint MILP optimization
+  to trace Pareto frontiers across policy-relevant objectives, and Monte
+  Carlo uncertainty propagation for small-sample cohort data. Designed for
+  university incubators operating under government-mandated accountability
+  frameworks such as Brazil's CERNE accreditation system.
+authors:
+  - family-names: Careta
+    given-names: Catarina Barbosa
+    orcid: "https://orcid.org/0000-0003-4433-8073"
+    affiliation: "Universidade de São Paulo"
+  - family-names: Satolo
+    given-names: Luiz
+    orcid: "https://orcid.org/0000-0001-5586-6424"
+    affiliation: "Instituto Tecnológico de Aeronáutica"
+repository-code: "https://github.com/luizsatolo/incubation-portfolio-optimization"
+license: MIT
+# doi: ""          # add Zenodo DOI after first release
+# date-released: "" # add release date (YYYY-MM-DD)
+version: "1.0.0"
+keywords:
+  - business incubation
+  - portfolio optimization
+  - ElasticNet
+  - penalized logistic regression
+  - MILP
+  - epsilon-constraint method
+  - multiobjective optimization
+  - Pareto frontier
+  - Monte Carlo simulation
+  - innovation policy
+  - science parks
+  - CERNE
+  - Brazil
+  - small samples
+
+preferred-citation:
+  type: article
+  title: >
+    Designing Incubation Portfolios Aligned with Public Policy Objectives:
+    Predictive Modeling and Multiobjective Optimization from a Brazilian
+    University Incubator
+  authors:
+    - family-names: Careta
+      given-names: Catarina Barbosa
+      orcid: "https://orcid.org/0000-0003-4433-8073"
+      affiliation: "Universidade de São Paulo"
+    - family-names: Satolo
+      given-names: Luiz
+      orcid: "https://orcid.org/0000-0001-5586-6424"
+      affiliation: "Instituto Tecnológico de Aeronáutica"
+  journal: "Technovation"
+  status: under-review
+  # doi: ""    # add when available
+  # year:      # add when available
+  # volume:    # add when available
+  # issue:     # add when available
+  # pages:     # add when available

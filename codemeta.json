@@ -1,0 +1,82 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "name": "Incubation Portfolio Optimization Pipeline",
+  "description": "Replication code for a predictive modeling and multiobjective optimization pipeline for evidence-based incubation portfolio selection under public policy constraints. Implements ElasticNet-penalized logistic regression with leave-one-out cross-validation, epsilon-constraint MILP optimization to trace Pareto frontiers across policy-relevant objectives, and Monte Carlo uncertainty propagation for small-sample cohort data. Designed for university incubators operating under government-mandated accountability frameworks such as Brazil's CERNE accreditation system.",
+  "codeRepository": "https://github.com/luizsatolo/incubation-portfolio-optimization",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "1.0.0",
+  "programmingLanguage": [
+    {
+      "@type": "ComputerLanguage",
+      "name": "Python",
+      "version": "3.9+"
+    }
+  ],
+  "runtimePlatform": "Jupyter Notebook",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Catarina Barbosa",
+      "familyName": "Careta",
+      "@id": "https://orcid.org/0000-0003-4433-8073",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Universidade de São Paulo"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Luiz",
+      "familyName": "Satolo",
+      "@id": "https://orcid.org/0000-0001-5586-6424",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Instituto Tecnológico de Aeronáutica"
+      }
+    }
+  ],
+  "referencePublication": {
+    "@type": "ScholarlyArticle",
+    "name": "Designing Incubation Portfolios Aligned with Public Policy Objectives: Predictive Modeling and Multiobjective Optimization from a Brazilian University Incubator",
+    "author": [
+      {
+        "@type": "Person",
+        "givenName": "Catarina Barbosa",
+        "familyName": "Careta",
+        "@id": "https://orcid.org/0000-0003-4433-8073"
+      },
+      {
+        "@type": "Person",
+        "givenName": "Luiz",
+        "familyName": "Satolo",
+        "@id": "https://orcid.org/0000-0001-5586-6424"
+      }
+    ],
+    "isPartOf": {
+      "@type": "Periodical",
+      "name": "Technovation"
+    }
+  },
+  "keywords": [
+    "business incubation",
+    "portfolio optimization",
+    "ElasticNet",
+    "penalized logistic regression",
+    "MILP",
+    "epsilon-constraint method",
+    "multiobjective optimization",
+    "Pareto frontier",
+    "Monte Carlo simulation",
+    "innovation policy",
+    "science parks",
+    "CERNE",
+    "Brazil",
+    "small samples"
+  ],
+  "developmentStatus": "active",
+  "isSourceCodeOf": {
+    "@type": "SoftwareApplication",
+    "name": "Incubation Portfolio Optimization Pipeline"
+  }
+}
