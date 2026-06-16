@@ -79,4 +79,5 @@
     "@type": "SoftwareApplication",
     "name": "Incubation Portfolio Optimization Pipeline"
   }
+  "identifier": "https://doi.org/10.5281/zenodo.20720293"
 }
